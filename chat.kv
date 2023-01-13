@@ -1,0 +1,80 @@
+# chat.kv
+<ChatScreen>:
+    BoxLayout:
+        orientation: 'vertical'
+        padding: "10dp"
+        spacing: "20dp"
+
+        MDTopAppBar:
+            title: "Chat"
+            md_bg_color: app.theme_cls.primary_color
+            specific_text_color: 1, 1, 1, 1
+
+        ScrollView:
+            TextInput:
+                id: chat_output
+                readonly: True
+                multiline: True
+                size_hint_y: None
+                height: "300dp"
+
+        MDTextField:
+            id: chat_input
+            hint_text: "Type your message..."
+            helper_text: "Press Enter to send"
+            helper_text_mode: "on_focus"
+            on_text_validate: app.send_message(chat_input.text)
+            pos_hint: {'center_x': 0.5}
+            size_hint_x: None
+            width: "300dp"
+
+        MDBottomNavigation:  # Add this widget for the navigation bar
+
+            MDBottomNavigationItem:
+                name: 'login_success'
+                text: 'Home'
+                icon: 'home'
+                on_tab_press:
+                    app.root.transition.direction = 'right'
+                    app.root.current = 'login_success'
+
+                BoxLayout:
+                    orientation: 'vertical'
+
+                    MDLabel:
+                        text: 'Option 1'
+                        halign: 'center'
+
+
+            MDBottomNavigationItem:
+                name: 'chat'
+                text: 'Chat'
+                icon: 'chat'
+                on_tab_press: app.switch_to_chat(root.username)
+
+                BoxLayout:
+                    orientation: 'vertical'
+
+                    MDLabel:
+                        text: 'Chat'
+                        halign: 'center'
+
+
+            MDBottomNavigationItem:
+                name: 'screen 3'
+                text: 'Option 3'
+                icon: 'account'
+
+                BoxLayout:
+                    orientation: 'vertical'
+
+                    MDLabel:
+                        text: 'Option 3'
+                        halign: 'center'
+
+                    MDRaisedButton:
+                        text: 'Go to Option 3'
+                        on_release:
+                            app.root.transition = SlideTransition(direction='right')  # Add this line
+                            app.root.current = 'screen 3'  # Add this line
+

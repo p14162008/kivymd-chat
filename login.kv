@@ -1,0 +1,53 @@
+<LoginScreen>:
+    BoxLayout:
+        orientation: 'vertical'
+        padding: "10dp"
+        spacing: "20dp"
+
+        MDTopAppBar:
+            title: "Login"
+            md_bg_color: app.theme_cls.primary_color
+            specific_text_color: 1, 1, 1, 1
+
+        Widget:
+
+        Image:
+            source: 'Cougar Paw CBSS.png'  # replace with the path to your logo
+            size_hint: (None, None)
+            size: (100, 100)
+            pos_hint: {'center_x': 0.5}
+
+        MDTextField:
+            id: username
+            hint_text: "Username"
+            helper_text: "Enter your username"
+            helper_text_mode: "on_focus"
+            icon_right: "account"
+            icon_right_color: app.theme_cls.primary_color
+            pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+            size_hint_x: None
+            width: 300
+
+        MDTextField:
+            id: password
+            hint_text: "Password"
+            helper_text: "Enter your password"
+            helper_text_mode: "on_focus"
+            password: True
+            icon_right: "eye-off"
+            icon_right_color: app.theme_cls.primary_color
+            pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+            size_hint_x: None
+            width: 300
+
+        MDRaisedButton:
+            text: "Signup"
+            pos_hint: {'center_x': 0.5}
+            on_release: app.signup(username.text, password.text)
+
+        MDRaisedButton:
+            text: "Login"
+            pos_hint: {'center_x': 0.5}
+            on_release: app.login(username.text, password.text)
+
+        Widget:

@@ -1,0 +1,71 @@
+#:import SlideTransition kivy.uix.screenmanager.SlideTransition
+
+<LoginSuccessScreen>:
+    username: ""
+    BoxLayout:
+        orientation: 'vertical'
+        padding: "10dp"
+        spacing: "20dp"
+
+        MDTopAppBar:
+            title: "Welcome"
+            md_bg_color: app.theme_cls.primary_color
+            specific_text_color: 1, 1, 1, 1
+
+        Widget:
+
+        MDLabel:
+            text: "Welcome to the next page!"
+            halign: 'center'
+
+        Widget:
+
+        MDBottomNavigation:  # Add this widget for the navigation bar
+
+            MDBottomNavigationItem:
+                name: 'login_success'
+                text: 'Home'
+                icon: 'home'
+                on_tab_press:
+                    app.root.transition.direction = 'right'
+                    app.root.current = 'login_success'
+
+                BoxLayout:
+                    orientation: 'vertical'
+
+                    MDLabel:
+                        text: 'Option 1'
+                        halign: 'center'
+
+
+            MDBottomNavigationItem:
+                name: 'chat'
+                text: 'Chat'
+                icon: 'chat'
+                on_tab_press: app.switch_to_chat(root.username)
+
+                BoxLayout:
+                    orientation: 'vertical'
+
+                    MDLabel:
+                        text: 'Chat'
+                        halign: 'center'
+
+
+            MDBottomNavigationItem:
+                name: 'screen 3'
+                text: 'Option 3'
+                icon: 'account'
+
+                BoxLayout:
+                    orientation: 'vertical'
+
+                    MDLabel:
+                        text: 'Option 3'
+                        halign: 'center'
+
+                    MDRaisedButton:
+                        text: 'Go to Option 3'
+                        on_release:
+                            app.root.transition = SlideTransition(direction='right')  # Add this line
+                            app.root.current = 'screen 3'  # Add this line
